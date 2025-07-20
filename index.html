@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tail Vitals</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- AOS CSS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <style>
+    :root {
+      --brand-primary: #2F80ED;
+      --brand-secondary: #56CCF2;
+      --brand-dark: #1B1F3B;
+      --brand-light: #F8FBFF;
+      --accent: #E8505B;
+      --text-dark: #333;
+    }
+    *, *::before, *::after { box-sizing: border-box; scroll-behavior: smooth; }
+    body { font-family: 'Poppins', sans-serif; background: var(--brand-light); color: var(--text-dark); margin: 0; }
+
+    /* Navbar */
+    .navbar { background: var(--brand-dark) !important; }
+    .navbar-brand img { height: 40px; width: auto; }
+    .nav-link { color: #fff !important; position: relative; }
+    .nav-link::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--accent); transition: width .3s; }
+    .nav-link:hover::after { width: 100%; }
+
+    /* Hero Section */
+    .hero { position: relative; background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary)); color: #fff; min-height: 80vh; display: flex; align-items: center; justify-content: center; text-align: center; }
+    .hero::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 100px; background: url('data:image/svg+xml;charset=UTF-8,<svg width="100%" height="100" xmlns="http://www.w3.org/2000/svg"><path d="M0,100 C150,0 350,200 500,100 L100%,0 L0,0 Z" fill="%23F8FBFF"/></svg>') no-repeat bottom; background-size: cover; }
+    .hero img { height: 120px; margin-bottom: 1rem; }
+    .btn-primary { background: var(--accent); border: none; padding: .75rem 1.5rem; font-size: 1.1rem; transition: transform .3s; }
+    .btn-primary:hover { transform: scale(1.05); }
+
+    /* Sections */
+    section { padding: 4rem 0; }
+    .section-wave { margin-top: -1px; }
+    h2.section-title { font-weight: 600; margin-bottom: 2rem; color: var(--brand-dark); }
+
+    /* Cards */
+    .feature-card, .usecase-card { border: none; border-radius: 1rem; box-shadow: 0 8px 20px rgba(0,0,0,0.1); background: #fff; transition: transform .3s; display: flex; flex-direction: column; align-items: center; text-align: center; padding: 2rem; height: 100%; justify-content: space-between; }
+    .feature-card:hover, .usecase-card:hover { transform: translateY(-10px) scale(1.05); }
+    .feature-icon, .usecase-icon { font-size: 2.5rem; color: var(--accent); margin-bottom: 1rem; }
+
+    /* About List */
+    .list-group-item { display: flex; align-items: flex-start; }
+    .list-group-item + .list-group-item { border-top: 1px solid #e9ecef; }
+    .list-group-item i { font-size: 1.5rem; color: var(--accent); margin-right: .75rem; flex-shrink: 0; }
+    .list-group-item .about-content { flex: 1; }
+    .list-group-item .about-content > div { margin-bottom: 0.5rem; }
+    .list-group-item .about-content .about-title { font-weight: 600; }
+    .list-group-item .about-content .about-description { margin: 0; }
+    .list-group-item + .list-group-item { border-top: 1px solid #e9ecef; }
+    .list-group-item i { font-size: 1.5rem; color: var(--accent); }
+
+    /* Text Colors */
+    h1.display-4 { color: #fff; }
+    h2, h5 { color: var(--brand-primary); }
+    h4 { color: var(--brand-secondary); margin-top: 1rem; }
+    p, li { color: var(--text-dark); }
+
+    /* Footer */
+    footer { background: var(--brand-dark); color: #fff; padding: 2rem 0; }
+    .social-icon { font-size: 1.5rem; margin: 0 .5rem; color: #fff; transition: color .3s; }
+    .social-icon:hover { color: var(--accent); }
+
+    /* Scroll-to-top */
+    #scrollTop { position: fixed; bottom: 40px; right: 40px; background: var(--accent); color: #fff; border: none; border-radius: 50%; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; cursor: pointer; opacity: 0; transition: opacity .3s; z-index: 1000; }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="#">
+        <img src="TailVitalsLogo.png" alt="Logo"> <span class="fw-bold ms-2">Tail Vitals</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#overview">Overview</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#vision">Vision</a></li>
+          <li class="nav-item"><a class="nav-link" href="#usecases">Use Cases</a></li>
+          <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container hero-content text-center" data-aos="fade-down" data-aos-duration="1500">
+      <img src="TailVitalsLogo.png" alt="Logo" data-aos="zoom-in" data-aos-duration="1200">
+      <h1 class="display-4 fw-bold" data-aos="fade-up" data-aos-delay="300">Welcome to Tail Vitals</h1>
+      <p class="lead mb-4" data-aos="fade-up" data-aos-delay="500">Empowering pet owners with proactive health insights, powered by advanced sensor technology and intuitive analytics.</p>
+      <a href="#overview" class="btn btn-primary btn-lg" data-aos="fade-up" data-aos-delay="700">Discover More</a>
+    </div>
+  </section>
+
+  <!-- Overview Section -->
+  <section id="overview" data-aos="fade-up">
+    <div class="container">
+      <h2 class="section-title text-center">Overview of Tail Vitals</h2>
+      <p class="text-center mb-5">Tail Vitals combines biometric sensing with a seamless mobile platform to deliver continuous monitoring of your pet's vital signs, driving actionable recommendations and peace of mind.</p>
+      <div class="row align-items-center">
+        <div class="col-md-6" data-aos="fade-right" data-aos-delay="200">
+          <h4>Comprehensive Monitoring</h4>
+          <p>Tracks heart rate, temperature, stress, and activity patterns for early detection of health issues.</p>
+        </div>
+        <div class="col-md-6" data-aos="fade-left" data-aos-delay="400">
+          <h4>Affordable Access</h4>
+          <p>Priced at $199 with a low monthly fee, democratizing advanced diagnostics once costing $350–$500.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SVG Wave Separator -->
+  <div class="section-wave bg-light"></div>
+
+  <!-- About Section -->
+  <section id="about" class="bg-light" data-aos="fade-up">
+    <div class="container">
+      <h2 class="section-title text-center">About Tail Vitals</h2>
+      <ul class="list-group list-group-flush mx-auto" style="max-width:600px;">
+        <li class="list-group-item">
+          <i class="bi bi-lightbulb usecase-icon"></i>
+          <div class="about-content">
+            <div class="about-title">Innovative Platform:</div>
+            <p class="about-description">Integrates wearable sensor hardware and a robust analytics dashboard to transform pet care standards.</p>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <i class="bi bi-heart-pulse-fill usecase-icon"></i>
+          <div class="about-content">
+            <div class="about-title">24/7 Connectivity:</div>
+            <p class="about-description">Continuous Bluetooth Low Energy (BLE) communication ensures uninterrupted data flow to our secure cloud infrastructure.</p>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <i class="bi bi-journal-medical usecase-icon"></i>
+          <div class="about-content">
+            <div class="about-title">Veterinary Clinics:</div>
+            <p class="about-description">Enhance remote patient monitoring, streamline diagnostics, and improve client engagement.</p>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <i class="bi bi-cash-stack usecase-icon"></i>
+          <div class="about-content">
+            <div class="about-title">Cost-Effective Care:</div>
+            <p class="about-description">Reduces emergency veterinary expenses by facilitating preventative interventions and informed decision-making.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Vision Section -->
+  <section id="vision" data-aos="fade-up">
+    <div class="container text-center">
+      <h2 class="section-title">Our Vision</h2>
+      <p class="mb-4">To redefine pet healthcare by pioneering intelligent wearables that seamlessly integrate into daily life, extending the healthspan and happiness of animals worldwide.</p>
+      <div class="row">
+        <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="feature-card">
+            <i class="bi bi-globe2 feature-icon"></i>
+            <h5>Global Adoption</h5>
+            <p>Scale Tail Vitals across international markets through partnerships with veterinary networks and pet care organizations.</p>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="400">
+          <div class="feature-card">
+            <i class="bi bi-shuffle feature-icon"></i>
+            <h5>Cross-Species Expansion</h5>
+            <p>Leverage core technology to develop specialized solutions for cats, horses, livestock, and exotic pets.</p>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="600">
+          <div class="feature-card">
+            <i class="bi bi-lightbulb feature-icon"></i>
+            <h5>Continuous Innovation</h5>
+            <p>Invest in R&D to incorporate AI-driven predictive analytics and next-gen biosensors.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Use Cases Section -->
+  <section id="usecases" class="bg-light" data-aos="fade-up">
+    <div class="container">
+      <h2 class="section-title text-center">Use Cases</h2>
+      <div class="row text-center">
+        <div class="col-md-4 mb-4" data-aos="zoom-in" data-aos-delay="200">
+          <div class="usecase-card p-4">
+            <i class="bi bi-people usecase-icon"></i>
+            <h5>Pet Owners</h5>
+            <p>Gain confidence with continuous health analytics, reducing anxiety and unexpected vet visits.</p>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4" data-aos="zoom-in" data-aos-delay="400">
+          <div class="usecase-card p-4">
+            <i class="bi bi-journal-medical usecase-icon"></i>
+            <h5>Veterinary Clinics</h5>
+            <p>Enhance remote patient monitoring, streamline diagnostics, and improve client engagement.</p>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4" data-aos="zoom-in" data-aos-delay="600">
+          <div class="usecase-card p-4">
+            <i class="bi bi-house-heart usecase-icon"></i>
+            <h5>Breeders & Shelters</h5>
+            <p>Optimize group welfare management with aggregate health trends and early outbreak detection.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features" data-aos="fade-up">
+    <div class="container">
+      <h2 class="section-title text-center">Key Features</h2>
+      <div class="row">
+        <div class="col-md-3 mb-4" data-aos="flip-left">
+          <div class="feature-card p-4 text-center">
+            <i class="bi bi-watch feature-icon"></i>
+            <h5>Real-Time Tracking</h5>
+            <p>Continuous monitoring of vital parameters with millisecond precision.</p>
+          </div>
+        </div>
+        <div class="col-md-3 mb-4" data-aos="flip-up">
+          <div class="feature-card p-4 text-center">
+            <i class="bi bi-bell feature-icon"></i>
+            <h5>Custom Alerts</h5>
+            <p>Configurable thresholds and personalized notifications via mobile and email.</p>
+          </div>
+        </div>
+        <div class="col-md-3 mb-4" data-aos="flip-right">
+          <div class="feature-card p-4 text-center">
+            <i class="bi bi-bar-chart-line feature-icon"></i>
+            <h5>Advanced Analytics</h5>
+            <p>Visual dashboards and trend analysis to inform proactive health strategies.</p>
+          </div>
+        </div>
+        <div class="col-md-3 mb-4" data-aos="flip-left" data-aos-delay="200">
+          <div class="feature-card p-4 text-center">
+            <i class="bi bi-egg-fried feature-icon"></i>
+            <h5>Personalized Diet</h5>
+            <p>Custom diet plans tailored to each breed based on real-time vital readings.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="contact" class="text-center py-4">
+    <div class="container">
+      <p class="mb-2">© 2025 Tail Vitals. All rights reserved.</p>
+      <div>
+        <a href="#" class="social-icon"><i class="bi bi-twitter"></i></a>
+        <a href="#" class="social-icon"><i class="bi bi-facebook"></i></a>
+        <a href="#" class="social-icon"><i class="bi bi-instagram"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll to Top -->
+  <button id="scrollTop"><i class="bi bi-arrow-up"></i></button>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({ once: false, mirror: true, duration: 800 });
+    const btn = document.getElementById('scrollTop');
+    window.addEventListener('scroll', () => { btn.style.opacity = window.scrollY > 300 ? 1 : 0; });
+    btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  </script>
+</body>
+</html>
