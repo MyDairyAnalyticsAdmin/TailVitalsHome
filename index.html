@@ -19,12 +19,14 @@
 
   <style>
     :root {
-      --brand-primary: #2F80ED;
-      --brand-secondary: #56CCF2;
+      --btn-orange: #FFA500;
+      --btn-orange-dark: #e69500;
       --brand-dark: #1B1F3B;
       --brand-light: #F8FBFF;
       --accent: #E8505B;
       --text-dark: #333;
+      --brand-primary: #2F80ED;
+      --brand-secondary: #56CCF2;
     }
     *, *::before, *::after { box-sizing: border-box; scroll-behavior: smooth; }
     body { font-family: 'Poppins', sans-serif; background: var(--brand-light); color: var(--text-dark); margin: 0; }
@@ -35,14 +37,30 @@
     .nav-link { color: #fff !important; position: relative; }
     .nav-link::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--accent); transition: width .3s; }
     .nav-link:hover::after { width: 100%; }
-    
 
-    /* Hero Section */
+    /* Hero */
     .hero { position: relative; background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary)); color: #fff; min-height: 80vh; display: flex; align-items: center; justify-content: center; text-align: center; }
     .hero::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 100px; background: url('data:image/svg+xml;charset=UTF-8,<svg width="100%" height="100" xmlns="http://www.w3.org/2000/svg"><path d="M0,100 C150,0 350,200 500,100 L100%,0 L0,0 Z" fill="%23F8FBFF"/></svg>') no-repeat bottom; background-size: cover; }
     .hero img { height: 120px; margin-bottom: 1rem; }
-    .btn-primary { background: var(--accent); border: none; padding: .75rem 1.5rem; font-size: 1.1rem; transition: transform .3s; }
-    .btn-primary:hover { transform: scale(1.05); }
+
+    /* Unified CTA Buttons */
+    .btn-cta {
+      font-weight: 600;
+      text-transform: uppercase;
+      padding: .75rem 2rem;
+      border-radius: 50px;
+      transition: all .3s ease;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+      background-color: var(--btn-orange);
+      color: #fff;
+      border: none;
+      margin: .5rem;
+    }
+    .btn-cta:hover {
+      background-color: var(--btn-orange-dark);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+    }
 
     /* Sections */
     section { padding: 4rem 0; }
@@ -50,7 +68,15 @@
     h2.section-title { font-weight: 600; margin-bottom: 2rem; color: var(--brand-dark); }
 
     /* Cards */
-    .feature-card, .usecase-card { border: none; border-radius: 1rem; box-shadow: 0 8px 20px rgba(0,0,0,0.1); background: #fff; transition: transform .3s; display: flex; flex-direction: column; align-items: center; text-align: center; padding: 2rem; height: 100%; justify-content: space-between; }
+    .feature-card, .usecase-card {
+      border: none;
+      border-radius: 1rem;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      background: #fff;
+      transition: transform .3s;
+      display: flex; flex-direction: column; align-items: center; text-align: center;
+      padding: 2rem; height: 100%; justify-content: space-between;
+    }
     .feature-card:hover, .usecase-card:hover { transform: translateY(-10px) scale(1.05); }
     .feature-icon, .usecase-icon { font-size: 2.5rem; color: var(--accent); margin-bottom: 1rem; }
 
@@ -58,18 +84,11 @@
     .list-group-item { display: flex; align-items: flex-start; }
     .list-group-item + .list-group-item { border-top: 1px solid #e9ecef; }
     .list-group-item i { font-size: 1.5rem; color: var(--accent); margin-right: .75rem; flex-shrink: 0; }
-    .list-group-item .about-content { flex: 1; }
-    .list-group-item .about-content > div { margin-bottom: 0.5rem; }
-    .list-group-item .about-content .about-title { font-weight: 600; }
-    .list-group-item .about-content .about-description { margin: 0; }
-    .list-group-item + .list-group-item { border-top: 1px solid #e9ecef; }
-    .list-group-item i { font-size: 1.5rem; color: var(--accent); }
 
-    /* Text Colors */
-    h1.display-4 { color: #fff; }
-    h2, h5 { color: var(--brand-primary); }
-    h4 { color: var(--brand-secondary); margin-top: 1rem; }
-    p, li { color: var(--text-dark); }
+    /* Logos */
+    .logo-navbar { height: 70px; width: auto; }
+    .logo-hero { height: 700px; width: auto; margin-bottom: 20px; }
+    @media (max-width: 768px) { .logo-hero { height: 180px; } }
 
     /* Footer */
     footer { background: var(--brand-dark); color: #fff; padding: 2rem 0; }
@@ -77,7 +96,15 @@
     .social-icon:hover { color: var(--accent); }
 
     /* Scroll-to-top */
-    #scrollTop { position: fixed; bottom: 40px; right: 40px; background: var(--accent); color: #fff; border: none; border-radius: 50%; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; cursor: pointer; opacity: 0; transition: opacity .3s; z-index: 1000; }
+    #scrollTop {
+      position: fixed; bottom: 40px; right: 40px;
+      background: var(--btn-orange); color: #fff;
+      border: none; border-radius: 50%;
+      width: 50px; height: 50px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; cursor: pointer;
+      opacity: 0; transition: opacity .3s; z-index: 1000;
+    }
   </style>
 </head>
 <body>
@@ -85,7 +112,8 @@
   <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
     <div class="container">
       <a class="navbar-brand d-flex align-items-center" href="#">
-        <img src="wagVitals.png" alt="Logo" style="height:100px; width:auto;"> <span class="fw-bold ms-2">Wag Vitals</span>
+        <img src="wagVitals.png" alt="Logo" class="logo-navbar">
+        <span class="fw-bold ms-2">Wag Vitals</span>
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
         <span class="navbar-toggler-icon"></span>
@@ -106,10 +134,22 @@
   <!-- Hero Section -->
   <section class="hero">
     <div class="container hero-content text-center" data-aos="fade-down" data-aos-duration="1500">
-      <img src="wagVitals.png" alt="Logo" data-aos="zoom-in" data-aos-duration="1200" style="height:800px; width:auto;">
+      <img src="wagVitals.png" alt="Logo" class="logo-hero" data-aos="zoom-in" data-aos-duration="1200">
       <h1 class="display-4 fw-bold" data-aos="fade-up" data-aos-delay="300">Welcome to Wag Vitals</h1>
-      <p class="lead mb-4" data-aos="fade-up" data-aos-delay="500">Empowering pet owners with proactive health insights, powered by advanced sensor technology and intuitive analytics.</p>
-      <a href="#overview" class="btn btn-primary btn-lg" data-aos="fade-up" data-aos-delay="700">Discover More</a>
+      <p class="lead mb-4" data-aos="fade-up" data-aos-delay="500">
+        Empowering pet owners with proactive health insights, powered by advanced sensor technology and intuitive analytics.
+      </p>
+      <div class="d-flex flex-wrap justify-content-center">
+        <button class="btn btn-cta" data-bs-toggle="modal" data-bs-target="#earlyAccessModal" data-aos="fade-up" data-aos-delay="700">
+          Get Early Access
+        </button>
+        <button class="btn btn-cta" data-bs-toggle="modal" data-bs-target="#interestModal" data-aos="fade-up" data-aos-delay="800">
+          Add Your Interest
+        </button>
+        <button class="btn btn-cta" data-bs-toggle="modal" data-bs-target="#testDeviceModal" data-aos="fade-up" data-aos-delay="900">
+          Test Our Device on Your Pet?
+        </button>
+      </div>
     </div>
   </section>
 
@@ -117,7 +157,9 @@
   <section id="overview" data-aos="fade-up">
     <div class="container">
       <h2 class="section-title text-center">Overview of Wag Vitals</h2>
-      <p class="text-center mb-5">Wag Vitals combines biometric sensing with a seamless mobile platform to deliver continuous monitoring of your pet's vital signs, driving actionable recommendations and peace of mind.</p>
+      <p class="text-center mb-5">
+        Wag Vitals combines biometric sensing with a seamless mobile platform to deliver continuous monitoring of your pet's vital signs, driving actionable recommendations and peace of mind.
+      </p>
       <div class="row align-items-center">
         <div class="col-md-6" data-aos="fade-right" data-aos-delay="200">
           <h4>Comprehensive Monitoring</h4>
@@ -199,8 +241,7 @@
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
   <!-- Use Cases Section -->
   <section id="usecases" class="bg-light" data-aos="fade-up">
@@ -208,21 +249,21 @@
       <h2 class="section-title text-center">Use Cases</h2>
       <div class="row text-center">
         <div class="col-md-4 mb-4" data-aos="zoom-in" data-aos-delay="200">
-          <div class="usecase-card p-4">
+          <div class="usecase-card">
             <i class="bi bi-people usecase-icon"></i>
             <h5>Pet Owners</h5>
             <p>Gain confidence with continuous health analytics, reducing anxiety and unexpected vet visits.</p>
           </div>
         </div>
         <div class="col-md-4 mb-4" data-aos="zoom-in" data-aos-delay="400">
-          <div class="usecase-card p-4">
+          <div class="usecase-card">
             <i class="bi bi-journal-medical usecase-icon"></i>
             <h5>Veterinary Clinics</h5>
             <p>Enhance remote patient monitoring, streamline diagnostics, and improve client engagement.</p>
           </div>
         </div>
         <div class="col-md-4 mb-4" data-aos="zoom-in" data-aos-delay="600">
-          <div class="usecase-card p-4">
+          <div class="usecase-card">
             <i class="bi bi-house-heart usecase-icon"></i>
             <h5>Breeders & Shelters</h5>
             <p>Optimize group welfare management with aggregate health trends and early outbreak detection.</p>
@@ -269,7 +310,7 @@
     </div>
   </section>
 
-  <!-- Footer -->
+  <!-- Footer / Contact -->
   <footer id="contact" class="text-center py-4">
     <div class="container">
       <p class="mb-2">© 2025 Wag Vitals. All rights reserved.</p>
@@ -280,6 +321,112 @@
       </div>
     </div>
   </footer>
+
+  <!-- Early Access Modal -->
+  <div class="modal fade" id="earlyAccessModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Get Early Access</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <form action="https://script.google.com/macros/s/AKfycbxxDoOWND6lgzzh-Lou7UotNO8HJ1FLOIGx60f6Q2e1kRRY4KLLd0mC83QffX_eMk8ytQ/exec" method="POST">
+            <input type="hidden" name="formType" value="EarlyAccess">
+            <div class="mb-3">
+              <label for="early-name" class="form-label">Your Name</label>
+              <input type="text" id="early-name" name="name" class="form-control" required>
+            </div>
+            <div class="mb-3">
+              <label for="early-phone" class="form-label">Phone Number</label>
+              <input type="text" id="early-phone" name="phone" class="form-control" required>
+            </div>
+            <div class="mb-3">
+              <label for="early-email" class="form-label">Email Address</label>
+              <input type="email" id="early-email" name="email" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Your Interest Modal -->
+  <div class="modal fade" id="interestModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Add Your Interest</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <form action="https://script.google.com/macros/s/AKfycbxxDoOWND6lgzzh-Lou7UotNO8HJ1FLOIGx60f6Q2e1kRRY4KLLd0mC83QffX_eMk8ytQ/exec" method="POST">
+            <input type="hidden" name="formType" value="Interest">
+            <div class="mb-3">
+              <label for="interest-name" class="form-label">Your Name</label>
+              <input type="text" id="interest-name" name="name" class="form-control" required>
+            </div>
+            <div class="mb-3">
+              <label for="interest-phone" class="form-label">Phone Number</label>
+              <input type="text" id="interest-phone" name="phone" class="form-control" required>
+            </div>
+            <div class="mb-3">
+              <label for="interest-email" class="form-label">Email Address</label>
+              <input type="email" id="interest-email" name="email" class="form-control" required>
+            </div>
+            <div class="mb-3">
+              <label for="interest-text" class="form-label">Are You Interested In Our Device?</label>
+              <textarea id="interest-text" name="interest" rows="4" class="form-control" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Test Our Device Modal -->
+  <div class="modal fade" id="testDeviceModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Test Our Device on Your Pet?</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <form action="https://script.google.com/macros/s/AKfycbxxDoOWND6lgzzh-Lou7UotNO8HJ1FLOIGx60f6Q2e1kRRY4KLLd0mC83QffX_eMk8ytQ/exec" method="POST">
+            <input type="hidden" name="formType" value="TestDevice">
+            <div class="mb-3">
+              <label for="test-name" class="form-label">Your Name</label>
+              <input type="text" id="test-name" name="name" class="form-control" required>
+            </div>
+            <div class="mb-3">
+              <label for="test-phone" class="form-label">Phone Number</label>
+              <input type="text" id="test-phone" name="phone" class="form-control" required>
+            </div>
+            <div class="mb-3">
+              <label for="test-email" class="form-label">Email Address</label>
+              <input type="email" id="test-email" name="email" class="form-control" required>
+            </div>
+            <div class="mb-3">
+              <label for="test-pet" class="form-label">Pet’s Name</label>
+              <input type="text" id="test-pet" name="petName" class="form-control" required>
+            </div>
+            <div class="mb-3">
+              <label for="test-breed" class="form-label">Breed / Species</label>
+              <input type="text" id="test-breed" name="breed" class="form-control" required>
+            </div>
+            <div class="mb-3">
+              <label for="test-notes" class="form-label">Additional Notes</label>
+              <textarea id="test-notes" name="notes" rows="3" class="form-control"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Scroll to Top -->
   <button id="scrollTop"><i class="bi bi-arrow-up"></i></button>
